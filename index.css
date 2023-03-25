@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    background-image: linear-gradient(to bottom right, #050d0e, #072427);
+    display: grid;
+    place-items: center;
+}
+
+
+/* fonts */
+
+@font-face {
+    font-family: RobotoThin;
+    src: url(./public/fonts/Roboto/Roboto-Thin.ttf);
+}
+.font-roboto-thin, .font-roboto-thin * {
+    font-family: RobotoRegular;
+}
+
+@font-face {
+    font-family: RobotoRegular;
+    src: url(./public/fonts/Roboto/Roboto-Regular.ttf);
+}
+.font-roboto-regular, .font-roboto-regular * {
+    font-family: RobotoRegular;
+}
+
+@font-face {
+    font-family: RobotoMedium;
+    src: url(./public/fonts/Roboto/Roboto-Medium.ttf);
+}
+.font-roboto-medium, .font-roboto-medium * {
+    font-family: RobotoMedium;
+}
+
+
+
+
+
+/* circles */
+
+.circle-wrapper {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 170px;
+    height: 170px;
+    overflow: hidden;
+}
+
+.circle {
+    width: 100%;
+    height: 100%;
+    border: 25px solid #1fa2baad;
+    border-radius: 50%;
+}
+
+.circle-wrapper:has(.circle--tl) {
+    top: 0px;
+    left: 0px;
+}
+
+.circle--tl {
+    transform: translateX(-40px) translateY(-55px);
+}
+
+.circle-wrapper:has(.circle--br) {
+    width: 200px;
+    height: 200px;
+    left: unset;
+    top: unset;
+    right: 0px;
+    bottom: 0px;
+}
+
+.circle--br {
+    transform: translateX(60px) translateY(75px);
+    border: 30px solid #20beda5d;
+}
+
+
+
+
+/* login form */
+
+.form {
+    width: min(90%, 400px);
+    padding: 24px;
+    padding-inline: 40px;
+    background-color: rgba(255,255,255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(12px);
+
+    --text-input-color: white;
+    --text-input-bg: rgba(255,255,255, 0.07);
+    --text-input-font: RobotoThin;
+    --text-input-font-size: 13px;
+}
+
+.form__title {
+    font-family: RobotoRegular;
+    color: rgba(255,255,255, 0.95);
+    margin-bottom: 40px;
+}
+
+.form__inputs {
+}
+
+.form__inputs .form__inupt-wrapper {
+    margin-top: 30px;
+}
+
+.form__inputs .form__inupt-wrapper:first-child {
+    margin-top: 0px;
+}
+
+.form__inupt-wrapper {
+    position: relative;
+}
+
+.form__inupt-wrapper:focus-within .form__text-input-label {
+    transform: translateY(-75%);
+    color: rgba(255,255,255, 0.45);
+}
+
+.form__text-input:not(:placeholder-shown) ~ .form__text-input-label {
+    transform: translateY(-75%);
+    color: rgba(255,255,255, 0.45);
+}
+
+.form__text-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    color: var(--text-input-color);
+    background-color: var(--text-input-bg);
+    border-radius: 4px;
+    font-family: var(--text-input-font);
+    font-size: var(--text-input-font-size);
+    letter-spacing: 1px;
+}
+
+.form__text-input-label {
+    color: rgba(255,255,255, 0.55);
+    font-family: RobotoRegular;
+    font-size: 12px;
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    transition: transform .13s ease-out, color .13s linear;
+    pointer-events: none;
+}
+
+.form__checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+}
+
+.form__checkbox {
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    border: none;
+}
+
+.form__checkbox-label {
+    user-select: none;
+    cursor: pointer;
+    font-family: RobotoThin;
+    font-size: 12px;
+    color: rgba(255,255,255, 0.8);
+}
+
+.form__actions-wrapper {
+    margin-top: 24px;
+}
+
+.form__submit-button {
+    font-family: RobotoRegular;
+    display: inline-block;
+    width: 100%;
+    background-color: rgb(16, 109, 191);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: transform .15s linear, background-color .15s linear;
+}
+
+.form__submit-button:active {
+    transform: scale(0.97);
+    background-color: rgba(16, 109, 191, 0.85);
+}
+
+
+
+/* animations */
+
+.animate-form {
+    animation: animate-form 1.8s 0.3s ease forwards;
+    opacity: 0;
+}
+
+@keyframes animate-form {
+    from {
+        transform: scale(0.5) rotate(180deg);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+
+.animate-circle--tl {
+    animation: animate-circle--tl 0.6s var(--delay) ease 1;
+}
+
+@keyframes animate-circle--tl {
+    from {
+        transform: translateX(-80px) translateY(-80px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(unset) translateY(unset);
+        opacity: 1;
+    }
+}
+
+.animate-circle--br {
+    transform: translateX(120px) translateY(120px);
+    opacity: 0;
+    animation: animate-circle--br 0.6s var(--delay) ease 1 forwards;
+}
+
+@keyframes animate-circle--br {
+    to {
+        transform: translateX(60px) translateY(75px);
+        opacity: 1;
+    }
+}
